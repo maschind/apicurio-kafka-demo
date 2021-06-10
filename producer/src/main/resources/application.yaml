@@ -11,11 +11,13 @@ spring:
       trust-store-location: file:truststore-cluster-1.jks
       trust-store-password: p@ssw0rd
     producer:
-      bootstrap-servers: amqstreams-cluster-1-kafka-bootstrap-streams-playground-1.apps.ocp.lab.redhat.com:443
+      bootstrap-servers: my-cluster-kafka-bootstrap-strimzi.lab.redhat.com:443
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: io.apicurio.registry.utils.serde.AvroKafkaSerializer
+      value-serializer: io.apicurio.registry.serde.avro.AvroKafkaSerializer
       properties:
         apicurio:
           registry:
-            url: http://apicurioregistry1.streams-playground-1.apps.ocp.lab.redhat.com/api
-            artifact-id: io.apicurio.registry.utils.serde.strategy.TopicIdStrategy
+            url: http://example-apicurioregistry-kafkasql.strimzi.lab.redhat.com/apis/registry/v2
+            artifact-resolver-strategy: io.apicurio.registry.serde.avro.strategy.RecordIdStrategy
+            artifact:
+              version: "1"

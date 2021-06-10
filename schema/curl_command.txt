@@ -1,6 +1,6 @@
 curl --location --request POST 'http://localhost:8081/api/artifacts' \
 --header 'Content-Type: application/json; artifactType=AVRO' \
---header 'X-Registry-ArtifactId: events-value' \
+--header 'X-Registry-ArtifactId: Event' \
 --data-raw '{
   "name": "Event",
   "namespace": "com.redhat.apicuriokafkademo.schema.avro",

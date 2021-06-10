@@ -11,14 +11,14 @@ spring:
       trust-store-location: file:truststore-cluster-1.jks
       trust-store-password: p@ssw0rd
     consumer:
-      bootstrap-servers: amqstreams-cluster-1-kafka-bootstrap-streams-playground-1.apps.ocp.lab.redhat.com:443
+      bootstrap-servers: my-cluster-kafka-bootstrap-strimzi.lab.redhat.com:443
       group-id: group_id
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: io.apicurio.registry.utils.serde.AvroKafkaDeserializer
+      value-deserializer: io.apicurio.registry.serde.avro.AvroKafkaDeserializer
       properties:
         spring.json.trusted.packages: "com.redhat.apicuriokafkademo"
         apicurio:
           registry:
             use-specific-avro-reader: true
-            url: http://apicurioregistry1.streams-playground-1.apps.ocp.lab.redhat.com/api
+            url: http://example-apicurioregistry-kafkasql.strimzi.lab.redhat.com/apis/registry/v2

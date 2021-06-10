@@ -6,12 +6,12 @@ This projects show example of how to integrate apicurio with kafka
 1. setup kafka and a topic "events"
 2. extract server certificate and import it into a java key store as trust store. Configure application.yaml
 3. install service registry and import the event avro schema
-    ```mvn clean install -DskipTests -Pupload```
+    ```mvn generate-sources -Pupload```
     or use the API
     ```
     curl --location --request POST 'http://apicurioregistry1.streams-playground-1.lab.redhat.com/api/artifacts' \
     --header 'Content-Type: application/json; artifactType=AVRO' \
-    --header 'X-Registry-ArtifactId: events-value' \
+    --header 'X-Registry-ArtifactId: Event' \
     --data-raw '{
       "name": "Event",
       "namespace": "com.redhat.apicuriokafkademo.schema.avro",
@@ -23,10 +23,6 @@ This projects show example of how to integrate apicurio with kafka
       }, {
         "name" : "description",
         "type" : "string"
-      }, {
-        "name" : "createdOn",
-        "type" : "int",
-        "logicalType": "timestamp-millis"
       }
       ]
     }'   
@@ -34,16 +30,16 @@ This projects show example of how to integrate apicurio with kafka
 
 4. adjust application.yaml to use kafka and service registry endpoints and the create trust store
     ```
-    bootstrap-servers: amqstreams-cluster-1-kafka-bootstrap-streams-playground-1.lab.redhat.com:443
+    bootstrap-servers: my-cluster-kafka-bootstrap-streams-playground-1.lab.redhat.com:443
     ...
     properties:
         apicurio:
             registry:
-                url: http://apicurioregistry1.streams-playground-1.lab.redhat.com/api
+                url: example-apicurioregistry-kafkasql.strimzi.lab.redhat.com/apis/registry/v2
     ```
 5. generate event class
     ```
-    mvn clean install -DskipTests -Pavro
+    mvn generate-sources -Pavro
     ```
 6. build and package:
     ```
@@ -55,24 +51,23 @@ This projects show example of how to integrate apicurio with kafka
     --header 'Content-Type: application/json' \
     --data-raw '{
         "name": "some name",
-        "description": "some description",
-        "createdOn": 1604216455
+        "description": "some description"
     }'
     ```
 
 ## Maven Profiles for apicurio
 
 ### build Event Class from event.avsc
-```mvn clean install -DskipTests -Pavro```
+```mvn generate-sources -DskipTests -Pavro```
 ### upload schema to registry
-```mvn clean install -DskipTests -Pupload```
+```mvn generate-sources -Pupload```
 
 ### download schema to src/main/
-```mvn clean install -DskipTests -Pdownload```
+```mvn generate-sources -Pdownload```
 
 ## Extract Kafka secret and import it into a java keystore
 ```
-oc extract secret/amqstreams-cluster-1-cluster-ca-cert  -n streams-playground-1 --keys=ca.crt --to=- > ca-crt-1.pem
+oc extract secret/my-cluster-cluster-ca-cert  -n strimzi --keys=ca.crt --to=- > ca-crt-1.pem
 
 keytool -import -file ca-crt-1.pem -keystore ./truststore-cluster-1.jks -storepass p@ssw0rd
 ```

@@ -38,3 +38,9 @@ build/
 src/main/java/com/redhat/apicuriokafkademo/schema/avro/Event.java
 consumer/src/main/java/com/redhat/apicuriokafkademo/schema/avro/Event.java
 producer/src/main/java/com/redhat/apicuriokafkademo/schema/avro/Event.java
+truststore-cluster-1.jks
+consumer/truststore-cluster-1.jks
+producer/truststore-cluster-1.jks
+ca-crt-1.pem
+*.jks
+*/*.jks
