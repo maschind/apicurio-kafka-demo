@@ -7,26 +7,6 @@ This projects show example of how to integrate apicurio with kafka
 2. extract server certificate and import it into a java key store as trust store. Configure application.yaml
 3. install service registry and import the event avro schema
     ```mvn generate-sources -Pupload```
-    or use the API
-    ```
-    curl --location --request POST 'http://apicurioregistry1.streams-playground-1.lab.redhat.com/api/artifacts' \
-    --header 'Content-Type: application/json; artifactType=AVRO' \
-    --header 'X-Registry-ArtifactId: Event' \
-    --data-raw '{
-      "name": "Event",
-      "namespace": "com.redhat.apicuriokafkademo.schema.avro",
-      "type": "record",
-      "doc": "Avro Schema for Event",
-      "fields" : [ {
-        "name" : "name",
-        "type" : "string"
-      }, {
-        "name" : "description",
-        "type" : "string"
-      }
-      ]
-    }'   
-    ```
 
 4. adjust application.yaml to use kafka and service registry endpoints and the create trust store
     ```
