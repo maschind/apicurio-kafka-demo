@@ -4,19 +4,19 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.3.4.RELEASE</version>
+    <version>2.6.1</version>
     <relativePath /> <!-- lookup parent from repository -->
   </parent>
   <groupId>com.redhat</groupId>
   <artifactId>apicurio-kafka-demo-consumer</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <name>apicurio-kafka-demo</name>
   <description>Demo project for apicurio and kafka</description>
 
   <properties>
     <java.version>1.8</java.version>
-    <avro.version>1.10.2</avro.version>
-    <apicurio.version>2.0.0.Final</apicurio.version>
+    <avro.version>1.11.0</avro.version>
+    <apicurio.version>2.1.4.Final</apicurio.version>
     <apicurio.registry.url>http://example-apicurioregistry-kafkasql.strimzi.lab.redhat.com/apis/registry/v2</apicurio.registry.url>
   </properties>
 
@@ -53,7 +53,7 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.18.20</version>
+      <version>1.18.22</version>
       <optional>true</optional>
     </dependency>
     <dependency>
