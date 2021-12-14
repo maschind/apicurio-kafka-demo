@@ -135,6 +135,7 @@
                       <groupId>com.redhat.apicuriokafkademo.schema.avro</groupId>
                       <artifactId>Event</artifactId>
                       <file>${project.basedir}/../schema/event.avsc</file>
+                      <ifExists>UPDATE</ifExists>
                     </artifact>
                   </artifacts>
                 </configuration>
